@@ -1,0 +1,25 @@
+{
+  "name": "Recipe App Dev Environment",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/py/bin/python",
+        "python.formatting.provider": "black",
+        "editor.formatOnSave": true
+      },
+      "extensions": [
+        "anthropic.claude-code",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-containers",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "remoteUser": "django-user"
+}

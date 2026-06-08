@@ -9,22 +9,22 @@ COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 ARG DEV=false
-
+RUN apk add --no-cache git
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     apk add --no-cache libpq && \
     apk add --no-cache --virtual .tmp-build-deps \
-        build-base libpq-dev musl-dev && \
+    build-base libpq-dev musl-dev && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     if [ "$DEV" = "true" ]; \
-        then /py/bin/pip install -r /tmp/requirements.dev.txt; \
+    then /py/bin/pip install -r /tmp/requirements.dev.txt; \
     fi && \
-    rm -rf /tmp && \
+    rm /tmp/requirements.txt && \
+    rm /tmp/requirements.dev.txt && \
     apk del .tmp-build-deps && \
     adduser \
-        --disabled-password \
-        --no-create-home \
-        django-user
+    --disabled-password \
+    django-user
 
 ENV PATH="/py/bin:$PATH"
 
