@@ -9,7 +9,7 @@ COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 ARG DEV=false
-RUN apk add --no-cache git
+RUN apk add --no-cache git openssh-client
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     apk add --no-cache libpq && \
