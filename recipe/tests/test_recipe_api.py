@@ -172,6 +172,6 @@ class PrivateRecipeApiTests(TestCase):
         recipe = create_recipe(user=new_user)
         url = detail_url(recipe.id)
         res = self.client.delete(url)
-        self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
         
