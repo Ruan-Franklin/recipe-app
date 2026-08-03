@@ -17,7 +17,7 @@ TAGS_URL = reverse('recipe:tag-list')
 
 def detail_url(tag_id):
     """Create and return a tag detail url."""
-    return reverse('recipe-tag-detail', args=tag_id)
+    return reverse('recipe:tag-detail', args=[tag_id])
 
 def create_user(email="testexample@email.com", password="testpass123"):
     """Create and return a new user."""
@@ -49,6 +49,7 @@ class PrivateTagsApiTests(TestCase):
         Tag.objects.create(user=self.user, name='Pizza')
         Tag.objects.create(user=self.user, name='Dessert')
         res = self.client.get(TAGS_URL)
+        print(res.data)
 
         tags = Tag.objects.all().order_by('-name')
         serializer = TagSerializer(tags, many=True)
